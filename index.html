@@ -5,31 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="description" content="江湖戏梦 - 一个文字类江湖角色扮演游戏，包含12大势力、动态关系系统、多结局剧情">
-    <meta name="theme-color" content="#0a0c15">
     <title>江湖戏梦 - 文字江湖RPG</title>
-    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body { 
-            font-family: 'Microsoft YaHei', 'SimSun', 'PingFang SC', 'Noto Sans CJK SC', sans-serif; 
+            font-family: 'Microsoft YaHei', 'SimSun', 'PingFang SC', sans-serif; 
             background: linear-gradient(135deg, #0a0c15 0%, #1a1d2e 100%);
             color: #e0e0e0; 
             min-height: 100vh;
             line-height: 1.6;
             font-size: 16px;
             -webkit-tap-highlight-color: transparent;
-            overflow-x: hidden;
         }
+        .container { max-width: 800px; margin: 0 auto; padding: 10px; }
         
-        .container { 
-            max-width: 800px; 
-            margin: 0 auto; 
-            padding: 10px; 
-        }
-        
-        /* 顶部状态栏 */
         .top-bar { 
             background: rgba(0,0,0,0.7); 
             border: 1px solid #2a3f5f; 
@@ -44,22 +33,14 @@
             top: 0;
             z-index: 100;
         }
-        
-        .four-stats { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 5px; 
-        }
-        
+        .four-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
         .stat-box { 
             text-align: center; 
             padding: 6px 2px; 
             background: rgba(255,255,255,0.05); 
             border-radius: 6px; 
             border-top: 3px solid;
-            transition: all 0.3s;
         }
-        
         .stat-box.yi { border-color: #e74c3c; } 
         .stat-box.li { border-color: #f39c12; }
         .stat-box.fa { border-color: #3498db; } 
@@ -78,11 +59,6 @@
             font-size: 11px;
         }
         
-        .time-display:active, .save-info:active {
-            transform: scale(0.95);
-        }
-        
-        /* 主游戏区域 */
         .game-box { 
             background: rgba(15,15,25,0.95); 
             border: 2px solid #3a506b; 
@@ -92,7 +68,6 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
         
-        /* 欢迎界面居中布局 */
         .welcome-screen {
             text-align: center;
             padding: 30px 15px;
@@ -110,7 +85,6 @@
             -webkit-text-fill-color: transparent; 
             margin-bottom: 15px; 
             font-weight: bold;
-            line-height: 1.3;
         }
         
         .welcome-subtitle {
@@ -118,13 +92,9 @@
             color: #95a5a6; 
             margin-bottom: 25px; 
             line-height: 1.8;
-            max-width: 600px;
         }
         
-        .highlight {
-            color: #e74c3c;
-            font-weight: bold;
-        }
+        .highlight { color: #e74c3c; font-weight: bold; }
         
         .feature-box {
             background: rgba(212,175,55,0.1); 
@@ -133,24 +103,11 @@
             margin: 20px auto; 
             max-width: 500px; 
             text-align: left;
-            width: 100%;
             border: 1px solid rgba(212,175,55,0.2);
         }
+        .feature-box h3 { color: #d4af37; margin-bottom: 10px; font-size: 16px; }
+        .feature-box ul { color: #bdc3c7; padding-left: 18px; line-height: 1.8; font-size: 13px; }
         
-        .feature-box h3 {
-            color: #d4af37; 
-            margin-bottom: 10px; 
-            font-size: 16px;
-        }
-        
-        .feature-box ul {
-            color: #bdc3c7; 
-            padding-left: 18px; 
-            line-height: 1.8; 
-            font-size: 13px;
-        }
-        
-        /* 按钮容器 - 确保居中 */
         .button-container {
             display: flex;
             flex-direction: column;
@@ -170,24 +127,10 @@
             cursor: pointer; 
             font-size: 16px; 
             font-weight: bold;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(212,175,55,0.3);
             width: 100%;
             text-align: center;
-            display: block;
-            text-decoration: none;
         }
-        
-        .btn-primary:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(212,175,55,0.4);
-        }
-        
-        .btn-primary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
         
         .btn-secondary {
             background: rgba(255,255,255,0.1);
@@ -197,19 +140,10 @@
             border-radius: 20px;
             cursor: pointer;
             font-size: 15px;
-            transition: all 0.3s;
             width: 100%;
-            display: block;
             text-align: center;
-            text-decoration: none;
         }
         
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: #d4af37;
-        }
-        
-        /* 势力面板 */
         .faction-panel { 
             background: rgba(0,0,0,0.4); 
             border: 1px solid #4a4a6a; 
@@ -219,13 +153,7 @@
             max-height: 180px; 
             overflow-y: auto;
         }
-        
-        .faction-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 8px;
-        }
-        
+        .faction-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
         .faction-item { 
             display: flex; 
             justify-content: space-between; 
@@ -235,21 +163,14 @@
             border-radius: 6px; 
             border-left: 3px solid;
             font-size: 12px;
-            transition: all 0.2s;
         }
         
-        .faction-item:hover {
-            background: rgba(255,255,255,0.06);
-        }
-        
-        /* 路线选择网格 */
         .route-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
             gap: 8px; 
             margin: 15px 0; 
         }
-        
         .route-card { 
             background: rgba(255,255,255,0.03); 
             border: 2px solid #4a4a6a; 
@@ -258,47 +179,21 @@
             cursor: pointer; 
             text-align: center; 
             font-size: 12px; 
-            transition: all 0.3s; 
             min-height: 85px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            touch-action: manipulation;
-            position: relative;
         }
+        .route-card:hover { border-color: #d4af37; background: rgba(212,175,55,0.1); }
+        .route-card.selected { border-color: #d4af37; background: rgba(212,175,55,0.2); }
+        .route-card.locked { opacity: 0.4; cursor: not-allowed; border-color: #e74c3c; }
         
-        .route-card:hover { 
-            border-color: #d4af37; 
-            background: rgba(212,175,55,0.1); 
-            transform: translateY(-2px);
-        }
-        
-        .route-card.selected {
-            border-color: #d4af37;
-            background: rgba(212,175,55,0.2);
-            box-shadow: 0 0 15px rgba(212,175,55,0.4);
-        }
-        
-        .route-card.locked { 
-            opacity: 0.4; 
-            cursor: not-allowed; 
-            border-color: #e74c3c;
-            filter: grayscale(0.8);
-        }
-        
-        .route-card.new-phase { 
-            border-color: #2ecc71; 
-            box-shadow: 0 0 8px rgba(46,204,113,0.3); 
-        }
-        
-        /* 游戏主界面 */
         #storyText {
             font-size: 15px;
             line-height: 1.8;
             margin-bottom: 20px;
             white-space: pre-wrap;
-            text-align: justify;
             padding: 15px;
             background: rgba(0,0,0,0.2);
             border-radius: 10px;
@@ -313,25 +208,13 @@
             border-radius: 10px; 
             cursor: pointer; 
             margin: 8px 0; 
-            text-align: left; 
             width: 100%;
             font-size: 14px;
-            line-height: 1.5;
-            transition: all 0.3s;
-            touch-action: manipulation;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
-        .choice-btn:hover { 
-            border-color: #d4af37; 
-            transform: translateX(5px);
-        }
-        
-        .choice-btn:active {
-            transform: scale(0.98);
-        }
+        .choice-btn:hover { border-color: #d4af37; }
         
         .tag { 
             display: inline-block; 
@@ -340,9 +223,7 @@
             border-radius: 10px; 
             margin-left: 4px;
             font-weight: bold;
-            white-space: nowrap;
         }
-        
         .tag-yi { background: rgba(231,76,60,0.3); color: #e74c3c; } 
         .tag-li { background: rgba(243,156,18,0.3); color: #f39c12; }
         .tag-fa { background: rgba(52,152,219,0.3); color: #3498db; } 
@@ -377,62 +258,29 @@
             margin: 10px 0; 
             font-size: 13px; 
             color: #d4af37;
-            border-radius: 0 8px 8px 0;
         }
         
-        /* 结局页面 */
         .life-summary { 
             background: rgba(0,0,0,0.4); 
             border: 1px solid #d4af37; 
             border-radius: 12px; 
             padding: 20px; 
             margin: 15px 0; 
-            text-align: left;
         }
+        .summary-title { color: #d4af37; font-size: 20px; margin-bottom: 15px; text-align: center; border-bottom: 2px solid rgba(212,175,55,0.3); padding-bottom: 10px; }
+        .summary-section { margin: 10px 0; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid #d4af37; }
+        .summary-label { color: #95a5a6; font-size: 12px; margin-bottom: 5px; }
         
-        .summary-title {
-            color: #d4af37; 
-            font-size: 20px; 
-            margin-bottom: 15px; 
-            text-align: center; 
-            border-bottom: 2px solid rgba(212,175,55,0.3); 
-            padding-bottom: 10px;
-        }
-        
-        .summary-section {
-            margin: 10px 0; 
-            padding: 10px; 
-            background: rgba(255,255,255,0.03); 
-            border-radius: 8px;
-            border-left: 3px solid #d4af37;
-        }
-        
-        .summary-label { 
-            color: #95a5a6; 
-            font-size: 12px; 
-            margin-bottom: 5px; 
-        }
-        
-        .summary-content { 
-            color: #fff; 
-            font-size: 14px; 
-        }
-        
-        /* 存档模态框 */
         .save-modal {
             display: none;
             position: fixed;
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             padding: 15px;
         }
-        
         .save-content {
             background: #1a1d2e;
             border: 2px solid #d4af37;
@@ -443,7 +291,6 @@
             max-height: 85vh;
             overflow-y: auto;
         }
-        
         .save-input {
             width: 100%;
             padding: 10px;
@@ -454,24 +301,12 @@
             margin: 8px 0;
             font-size: 13px;
             font-family: monospace;
-            word-break: break-all;
         }
         
         .hidden { display: none !important; }
         
-        /* 角色创建 */
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .input-label {
-            display: block;
-            color: #d4af37;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-        
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-label { display: block; color: #d4af37; margin-bottom: 8px; font-size: 14px; }
         .text-input {
             width: 100%;
             padding: 12px;
@@ -480,20 +315,8 @@
             border-radius: 8px;
             color: #fff;
             font-size: 16px;
-            font-family: inherit;
         }
-        
-        .text-input:focus {
-            outline: none;
-            border-color: #d4af37;
-        }
-        
-        .gender-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 10px;
-        }
-        
+        .gender-group { display: flex; gap: 15px; margin-top: 10px; }
         .gender-option {
             flex: 1;
             padding: 15px;
@@ -502,240 +325,115 @@
             border-radius: 8px;
             cursor: pointer;
             text-align: center;
-            transition: all 0.3s;
         }
         
-        .gender-option:hover {
-            border-color: #d4af37;
-        }
-        
-        /* 手机端特殊适配 */
         @media (max-width: 768px) {
             body { font-size: 15px; }
             .container { padding: 8px; }
-            
-            .top-bar { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 6px;
-                padding: 8px;
-            }
-            
-            .four-stats { 
-                grid-column: 1 / -1; 
-                grid-template-columns: repeat(4, 1fr);
-                gap: 4px;
-            }
-            
-            .stat-box { padding: 5px 2px; }
-            .stat-val { font-size: 14px; }
-            
-            .game-box { 
-                padding: 15px; 
-                border-radius: 12px;
-                min-height: auto;
-            }
-            
+            .top-bar { grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 8px; }
+            .four-stats { grid-column: 1 / -1; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+            .game-box { padding: 15px; }
             .welcome-title { font-size: 24px; }
-            .welcome-subtitle { font-size: 13px; }
-            
-            .route-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 6px;
-            }
-            
-            .route-card {
-                min-height: 75px;
-                padding: 8px 4px;
-                font-size: 11px;
-            }
-            
-            .choice-btn {
-                padding: 12px 14px;
-                font-size: 14px;
-                margin: 6px 0;
-            }
-            
-            .faction-grid { grid-template-columns: 1fr; }
-            
-            .button-container {
-                max-width: 260px;
-            }
+            .route-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
         }
-        
         @media (max-width: 480px) {
             .welcome-title { font-size: 20px; }
-            
-            .route-grid { 
-                grid-template-columns: repeat(2, 1fr);
-                gap: 5px;
-            }
-            
-            .btn-primary { 
-                padding: 12px 25px; 
-                font-size: 15px;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .route-grid { grid-template-columns: 1fr; }
-        }
-        
-        /* 滚动条美化 */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.3);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #4a4a6a;
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #d4af37;
+            .route-grid { grid-template-columns: repeat(2, 1fr); gap: 5px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 顶部状态栏 -->
         <div class="top-bar hidden" id="topBar">
             <div class="four-stats">
-                <div class="stat-box yi">
-                    <div class="stat-name">义</div>
-                    <div class="stat-val" id="dispYi">50</div>
-                </div>
-                <div class="stat-box li">
-                    <div class="stat-name">利</div>
-                    <div class="stat-val" id="dispLi">50</div>
-                </div>
-                <div class="stat-box fa">
-                    <div class="stat-name">法</div>
-                    <div class="stat-val" id="dispFa">50</div>
-                </div>
-                <div class="stat-box qing">
-                    <div class="stat-name">情</div>
-                    <div class="stat-val" id="dispQing">50</div>
-                </div>
+                <div class="stat-box yi"><div class="stat-name">义</div><div class="stat-val" id="dispYi">50</div></div>
+                <div class="stat-box li"><div class="stat-name">利</div><div class="stat-val" id="dispLi">50</div></div>
+                <div class="stat-box fa"><div class="stat-name">法</div><div class="stat-val" id="dispFa">50</div></div>
+                <div class="stat-box qing"><div class="stat-name">情</div><div class="stat-val" id="dispQing">50</div></div>
             </div>
             <div class="time-display" onclick="Game.toggleSaveMenu()">
                 <div style="font-size: 9px; color: #d4af37;">🕐 大昊历法</div>
                 <div id="timeVal" style="font-weight: bold; font-size: 13px;">413年3月</div>
                 <div id="seasonVal" style="font-size: 10px;">🌸 春</div>
-                <div style="font-size: 8px; color: #d4af37; margin-top: 2px;">💾 点击存档</div>
             </div>
             <div class="cycle-info">
                 <div style="font-size: 9px; color: #9b59b6;">🔄 周目</div>
                 <div id="cycleVal" style="font-weight: bold; font-size: 13px;">第1世</div>
-                <div style="font-size: 8px; color: #7f8c8d; margin-top: 2px;" id="playerDisplay"></div>
+                <div id="playerDisplay" style="font-size: 8px; color: #7f8c8d; margin-top: 2px;"></div>
             </div>
             <div class="save-info" onclick="Game.quickSave()">
                 <div style="font-size: 9px; color: #2ecc71;">💾 存档</div>
-                <div style="font-size: 12px; font-weight: bold;">快速保存</div>
-                <div style="font-size: 8px; color: #7f8c8d; margin-top: 2px;" id="saveStatus">未保存</div>
+                <div id="saveStatus" style="font-size: 10px;">未保存</div>
             </div>
         </div>
 
-        <!-- 势力面板 -->
         <div class="faction-panel hidden" id="factionPanel">
-            <div style="color: #d4af37; margin-bottom: 10px; font-size: 14px; font-weight: bold;">
-                🌐 江湖势力网络
-            </div>
+            <div style="color: #d4af37; margin-bottom: 10px; font-size: 14px; font-weight: bold;">🌐 江湖势力网络</div>
             <div class="faction-grid" id="factionList"></div>
         </div>
 
-        <!-- 主游戏区 -->
         <div class="game-box" id="gameBox">
-            <!-- 欢迎页面 -->
             <div id="welcomeScreen" class="welcome-screen">
-                <div class="welcome-title">
-                    江湖戏梦 <span style="font-size: 18px;">v5.0</span>
-                </div>
+                <div class="welcome-title">江湖戏梦 <span style="font-size: 18px;">v5.0</span></div>
                 <div class="welcome-subtitle">
                     这是一个<span class="highlight">未完成</span>的江湖<br>
                     大昊一统天下四百年，已然风雨飘摇<br>
-                    北有代国虎视眈眈，南有东西二巫盘踞一隅<br>
                     <span style="font-size: 12px; opacity: 0.7;">剑歌十宗、三帮四会、黑道七贼、七大望族...</span>
                 </div>
-                
                 <div class="feature-box">
                     <h3>🎮 游戏特色</h3>
                     <ul>
                         <li>随时存档读档，支持导出导入存档码</li>
-                        <li>优化的势力关系算法，动态平衡江湖格局</li>
+                        <li>叙述用"你"，对话用"少侠/女侠"，沉浸式体验</li>
                         <li>周目继承系统，多周目探索不同结局</li>
                         <li>20+势力，数百种剧情分支</li>
                     </ul>
                 </div>
-
                 <div class="button-container">
                     <button class="btn-primary" onclick="Game.startNew()">🗡️ 新的开始</button>
                     <button class="btn-secondary" onclick="Game.showLoadMenu()">📂 继续游戏</button>
                 </div>
             </div>
 
-            <!-- 角色创建 -->
             <div id="charCreate" class="hidden" style="max-width: 400px; margin: 0 auto; padding: 20px 10px;">
-                <h2 style="color: #d4af37; text-align: center; margin-bottom: 25px; font-size: 22px;">创建角色</h2>
-                
+                <h2 style="color: #d4af37; text-align: center; margin-bottom: 25px;">创建角色</h2>
                 <div class="input-group">
                     <label class="input-label">✦ 尊姓大名</label>
                     <input type="text" id="playerName" class="text-input" placeholder="请输入姓名（2-4字）" maxlength="4">
                     <div style="font-size: 11px; color: #7f8c8d; margin-top: 5px;">游戏中将以姓+少侠/女侠称呼您</div>
                 </div>
-
                 <div class="input-group">
                     <label class="input-label">✦ 性别</label>
                     <div class="gender-group">
                         <div class="gender-option" onclick="Game.selectGender('男')" id="genderMale">
-                            <div style="font-size: 28px; margin-bottom: 5px;">👨</div>
+                            <div style="font-size: 28px;">👨</div>
                             <div style="font-size: 14px;">男</div>
-                            <div style="font-size: 10px; color: #7f8c8d; margin-top: 3px;">某少侠</div>
+                            <div style="font-size: 10px; color: #7f8c8d;">某少侠</div>
                         </div>
                         <div class="gender-option" onclick="Game.selectGender('女')" id="genderFemale">
-                            <div style="font-size: 28px; margin-bottom: 5px;">👩</div>
+                            <div style="font-size: 28px;">👩</div>
                             <div style="font-size: 14px;">女</div>
-                            <div style="font-size: 10px; color: #7f8c8d; margin-top: 3px;">某女侠</div>
+                            <div style="font-size: 10px; color: #7f8c8d;">某女侠</div>
                         </div>
                     </div>
                 </div>
-
-                <button class="btn-primary" onclick="Game.enterWorld()" id="enterBtn" style="opacity: 0.5; margin-top: 20px;" disabled>踏入江湖</button>
+                <button class="btn-primary" onclick="Game.enterWorld()" id="enterBtn" style="opacity: 0.5;" disabled>踏入江湖</button>
                 <button class="btn-secondary" onclick="Game.backToWelcome()" style="margin-top: 10px;">返回</button>
             </div>
 
-            <!-- 势力选择地图 -->
             <div id="routeSelect" class="hidden">
                 <h2 style="text-align: center; color: #d4af37; margin-bottom: 15px; font-size: 18px;" id="mapTitle"></h2>
                 <div class="event-log" id="worldStateHint" style="display: none;"></div>
-                
-                <div id="hostileWarning" class="hidden warning-box">
-                    ⚠️ 江湖告急！你已被各大势力视为眼中钉，唯有朝廷可容身...
-                </div>
-                
-                <div id="emperorSchemeHint" class="hidden scheme-box">
-                    🐉 天子密诏：朕知卿之冤，今夜子时，独上摘星楼，共谋天下事。
-                </div>
-
+                <div id="hostileWarning" class="hidden warning-box">⚠️ 江湖告急！你已被各大势力视为眼中钉，唯有朝廷可容身...</div>
+                <div id="emperorSchemeHint" class="hidden scheme-box">🐉 天子密诏：朕知卿之冤，今夜子时，独上摘星楼，共谋天下事。</div>
                 <div class="route-grid" id="routeGrid"></div>
-                
                 <div style="text-align: center; margin-top: 20px;">
-                    <button class="btn-primary hidden" onclick="Game.enterRoute()" id="enterRouteBtn" style="margin-bottom: 10px;">进入该势力</button>
-                    <button class="btn-primary hidden" onclick="Game.enterEmperorScheme()" id="emperorSchemeBtn" style="background: linear-gradient(135deg, #9b59b6, #d4af37); margin-bottom: 10px;">
-                        🐉 响应天子密诏
-                    </button>
-                    <div>
-                        <button class="btn-secondary" onclick="Game.restOneMonth()" style="font-size: 13px; padding: 8px 16px;">🌙 休养一月</button>
-                    </div>
+                    <button class="btn-primary hidden" onclick="Game.enterRoute()" id="enterRouteBtn">进入该势力</button>
+                    <button class="btn-primary hidden" onclick="Game.enterEmperorScheme()" id="emperorSchemeBtn" style="background: linear-gradient(135deg, #9b59b6, #d4af37);">🐉 响应天子密诏</button>
+                    <div><button class="btn-secondary" onclick="Game.restOneMonth()">🌙 休养一月</button></div>
                 </div>
             </div>
 
-            <!-- 游戏主界面 -->
             <div id="gameMain" class="hidden">
                 <div style="text-align: center; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid rgba(212,175,55,0.3);">
                     <div style="font-size: 20px; color: #d4af37; font-weight: bold;" id="locMain"></div>
@@ -743,112 +441,92 @@
                         <span id="phaseDisplay"></span> | <span id="relationDisplay"></span>
                     </div>
                 </div>
-                
-                <div class="hidden" id="chainEventLog">
-                    <b>连锁反应：</b><span id="chainText"></span>
-                </div>
-
+                <div class="hidden" id="chainEventLog"><b>连锁反应：</b><span id="chainText"></span></div>
                 <div id="storyText"></div>
                 <div id="choicesBox"></div>
-                
                 <button class="btn-secondary" onclick="Game.backToMap()" style="margin-top: 25px; width: 100%;">🗺️ 返回江湖地图</button>
             </div>
 
-            <!-- 结局页面 -->
-            <div id="ending" class="hidden" style="text-align: center; padding: 10px 0;">
-                <div style="font-size: 24px; color: #d4af37; margin-bottom: 15px; font-weight: bold; text-shadow: 0 0 20px rgba(212,175,55,0.3);" id="endTitle"></div>
-                
+            <div id="ending" class="hidden" style="text-align: center;">
+                <div style="font-size: 24px; color: #d4af37; margin-bottom: 15px; font-weight: bold;" id="endTitle"></div>
                 <div class="life-summary">
                     <div class="summary-title">📜 一生行状录</div>
-                    
-                    <div class="summary-section">
-                        <div class="summary-label">江湖名号</div>
-                        <div class="summary-content" id="summaryName" style="font-size: 16px; color: #d4af37; font-weight: bold;"></div>
-                    </div>
-
-                    <div class="summary-section">
-                        <div class="summary-label">游历概况</div>
-                        <div class="summary-content" id="summaryOverview"></div>
-                    </div>
-
-                    <div class="summary-section">
-                        <div class="summary-label">势力关系谱</div>
-                        <div class="summary-content" id="summaryFactions" style="font-size: 13px;"></div>
-                    </div>
-
-                    <div class="summary-section">
-                        <div class="summary-label">武学传承</div>
-                        <div class="summary-content" id="summaryMartial"></div>
-                    </div>
-
-                    <div class="summary-section">
-                        <div class="summary-label">侠心评定</div>
-                        <div class="summary-content" id="summaryStats" style="font-weight: bold;"></div>
-                    </div>
-
-                    <div class="summary-section">
-                        <div class="summary-label">最终结局</div>
-                        <div class="summary-content" id="summaryEnding" style="font-size: 15px; color: #d4af37; font-weight: bold;"></div>
-                    </div>
-
-                    <div class="summary-section">
-                        <div class="summary-label">江湖评语</div>
-                        <div class="summary-content" id="summaryComment" style="font-style: italic; color: #d4af37;"></div>
-                    </div>
+                    <div class="summary-section"><div class="summary-label">江湖名号</div><div class="summary-content" id="summaryName" style="color: #d4af37; font-weight: bold;"></div></div>
+                    <div class="summary-section"><div class="summary-label">游历概况</div><div class="summary-content" id="summaryOverview"></div></div>
+                    <div class="summary-section"><div class="summary-label">势力关系谱</div><div class="summary-content" id="summaryFactions" style="font-size: 13px;"></div></div>
+                    <div class="summary-section"><div class="summary-label">武学传承</div><div class="summary-content" id="summaryMartial"></div></div>
+                    <div class="summary-section"><div class="summary-label">侠心评定</div><div class="summary-content" id="summaryStats" style="font-weight: bold;"></div></div>
+                    <div class="summary-section"><div class="summary-label">最终结局</div><div class="summary-content" id="summaryEnding" style="color: #d4af37; font-weight: bold;"></div></div>
+                    <div class="summary-section"><div class="summary-label">江湖评语</div><div class="summary-content" id="summaryComment" style="font-style: italic; color: #d4af37;"></div></div>
                 </div>
-
                 <button class="btn-primary" onclick="Game.newCycle()">🔄 开启新周目</button>
                 <button class="btn-secondary" onclick="Game.backToWelcome()" style="margin-top: 10px;">🏠 返回主菜单</button>
             </div>
         </div>
     </div>
 
-    <!-- 存档模态框 -->
     <div id="saveModal" class="save-modal">
         <div class="save-content">
-            <h2 style="color: #d4af37; margin-bottom: 20px; text-align: center; font-size: 20px;">💾 存档管理</h2>
-            
+            <h2 style="color: #d4af37; margin-bottom: 20px; text-align: center;">💾 存档管理</h2>
             <div style="margin-bottom: 20px;">
-                <h3 style="color: #95a5a6; font-size: 12px; margin-bottom: 8px;">导出存档（复制保存）</h3>
+                <h3 style="color: #95a5a6; font-size: 12px; margin-bottom: 8px;">导出存档</h3>
                 <textarea id="exportSave" class="save-input" rows="3" readonly></textarea>
-                <button class="btn-secondary" onclick="Game.copySaveCode()" style="width: 100%; margin-top: 5px; font-size: 13px;">📋 复制存档码</button>
+                <button class="btn-secondary" onclick="Game.copySaveCode()" style="width: 100%; margin-top: 5px;">📋 复制存档码</button>
             </div>
-
             <div style="margin-bottom: 20px;">
                 <h3 style="color: #95a5a6; font-size: 12px; margin-bottom: 8px;">导入存档</h3>
                 <textarea id="importSave" class="save-input" rows="3" placeholder="在此粘贴存档码..."></textarea>
-                <button class="btn-secondary" onclick="Game.importSave()" style="width: 100%; margin-top: 5px; font-size: 13px;">📥 导入</button>
+                <button class="btn-secondary" onclick="Game.importSave()" style="width: 100%; margin-top: 5px;">📥 导入</button>
             </div>
-
-            <button class="btn-primary" onclick="Game.toggleSaveMenu()" style="padding: 10px 25px; font-size: 14px; width: auto;">关闭</button>
+            <button class="btn-primary" onclick="Game.toggleSaveMenu()" style="padding: 10px 25px; font-size: 14px;">关闭</button>
         </div>
     </div>
 
     <script>
+        // ==================== 文本辅助工具 ====================
+        const TextHelper = {
+            // 叙述视角："你"
+            you: () => "你",
+            
+            // 对话称谓："某少侠/某女侠"
+            honorific: (game) => {
+                if (!game.state.player.surname) return "少侠";
+                return `${game.state.player.surname}${game.state.player.title}`;
+            },
+            
+            // 仅姓氏
+            surname: (game) => game.state.player.surname || "",
+            
+            // 带提示的称谓（用于特殊场合）
+            fullname: (game) => {
+                return `${game.state.player.name}（${game.state.player.surname}${game.state.player.title}）`;
+            }
+        };
+
         // ==================== 游戏数据 ====================
         const FACTION_DATA = {
             qingxia: { name: '清霞门', type: 'sect', limit: '春', baseRelation: 0, phases: ['初识', '合作', '执掌', '剑宗'], camp: 'righteous', desc: '坐落于清霞山，以快慢手闻名，剑歌十宗之一', martial: ['清霞快慢手', '清霞剑歌'], characters: ['陈盈（金燕仙子）', '薛不凡（清霞剑仙）', '马一'], chainEffects: { lishan: 10, lingjian: 5, court: -5, tianxiang: -30, xuantian: 5 } },
-            xuantian: { name: '玄天宗', type: 'sect', limit: '秋', baseRelation: 0, phases: ['初识', '合作', '执掌', '道统'], camp: 'righteous', desc: '离国大宗，内功雄厚，老天师故去后由清风真人掌教', martial: ['玄天长生功'], characters: ['清风真人', '卢亮'], chainEffects: { court: 10, qingxia: 5, tianxiang: -25 } },
+            xuantian: { name: '玄天宗', type: 'sect', limit: '秋', baseRelation: 0, phases: ['初识', '合作', '执掌', '道统'], camp: 'righteous', desc: '离国大宗，内功雄厚', martial: ['玄天长生功'], characters: ['清风真人', '卢亮'], chainEffects: { court: 10, qingxia: 5, tianxiang: -25 } },
             changming: { name: '长明岛', type: 'sect', limit: null, baseRelation: 0, phases: ['初识', '合作', '执掌', '霸刀'], camp: 'neutral', desc: '洛水入海口，夜光水母照亮前滩，以霸刀著称', martial: ['长明霸刀'], characters: ['莫云（莫从龙）', '莫风（莫从虎）'], chainEffects: { caogang: -10, tianhe: 5, court: 15 } },
-            bingbao: { name: '冰堡', type: 'sect', limit: '冬', baseRelation: 0, phases: ['初识', '合作', '执掌', '极寒'], camp: 'righteous', desc: '大雪山神女峰，全女子剑派，剑神婆婆曾在此学剑', martial: ['冰堡乱剑', '心剑三悟'], characters: ['沈凝露', '剑神婆婆'], chainEffects: { lingjian: 15, shen: 5, daiguo: -5 } },
-            tiehuo: { name: '铁火门', type: 'sect', limit: '夏', baseRelation: 0, phases: ['初识', '合作', '执掌', '神铸'], camp: 'neutral', desc: '望国宗门，三姓轮值，长兵军事出身', martial: ['铁火门长兵', '军事战法'], characters: ['郭远山', '刘远丰', '赵远陆'], internalConflicts: ['郭远山', '刘远丰'], chainEffects: { court: 10, mabang: 5, yaobang: 5, chunqiu: -10 } },
+            bingbao: { name: '冰堡', type: 'sect', limit: '冬', baseRelation: 0, phases: ['初识', '合作', '执掌', '极寒'], camp: 'righteous', desc: '大雪山神女峰，全女子剑派', martial: ['冰堡乱剑', '心剑三悟'], characters: ['沈凝露', '剑神婆婆'], chainEffects: { lingjian: 15, shen: 5, daiguo: -5 } },
+            tiehuo: { name: '铁火门', type: 'sect', limit: '夏', baseRelation: 0, phases: ['初识', '合作', '执掌', '神铸'], camp: 'neutral', desc: '望国宗门，三姓轮值', martial: ['铁火门长兵', '军事战法'], characters: ['郭远山', '刘远丰', '赵远陆'], internalConflicts: ['郭远山', '刘远丰'], chainEffects: { court: 10, mabang: 5, yaobang: 5, chunqiu: -10 } },
             liuyun: { name: '流云宗', type: 'sect', limit: '春', baseRelation: 0, phases: ['初识', '合作', '执掌', '逍遥'], camp: 'righteous', desc: '离洛相交之地，以拳掌功夫著称', martial: ['流云拳掌'], characters: ['流云掌门'], chainEffects: { xuantian: 5, xiwu: 5 } },
-            lingjian: { name: '灵剑山庄', type: 'sect', limit: '秋', baseRelation: 0, phases: ['初识', '合作', '执掌', '剑阁'], camp: 'righteous', desc: '承国宗门，剑神婆婆出身于此，快剑无双', martial: ['灵剑快剑'], characters: ['苏清', '剑神婆婆'], grudges: { chunqiu: -20 }, chainEffects: { bingbao: 10, qingxia: -5, lishan: 10 } },
-            wanren: { name: '万仞山庄', type: 'sect', limit: '夏', baseRelation: 0, phases: ['初识', '合作', '执掌', '刑堂'], camp: 'neutral', desc: '许国宗门，铸造神兵，集百家所长', martial: ['万仞百兵', '铸造之术'], characters: ['万仞庄主'], chainEffects: { tiehuo: -5, underground: 5 } },
-            tianxiang: { name: '天香教', type: 'witch', limit: '夏', baseRelation: -30, phases: ['潜伏', '合作', '渗透', '魔主'], camp: 'evil', desc: '巫地魔教，主张纵情享乐，轻灵诡谲', martial: ['忘忧决', '众生相', '神王典'], characters: ['天香教主', '巫红'], chainEffects: { dongwu: 20, xiwu: -15, court: -50, underground: 10 } },
-            daiguo: { name: '代国藏龙阁', type: 'evil', limit: null, baseRelation: -50, phases: ['潜伏', '渗透', '叛乱', '改朝'], camp: 'evil', desc: '代国武学传承，诸神令（雷神、风神、火神、水神）', martial: ['诸神令'], characters: ['金叶子', '诸葛败'], chainEffects: { court: -30, bingbao: -10, underground: 10, rujian: 10, lishan: -10 } },
-            caogang: { name: '漕帮', type: 'gang', limit: '夏', baseRelation: 0, phases: ['初识', '合作', '执掌', '一统水道'], camp: 'neutral', desc: '掌控大昊水运，帮主义子柳月河号明月千里', martial: ['水上功夫', '奇门兵器'], characters: ['柳月河', '漕帮帮主'], chainEffects: { rujian: 15, tianhe: 10, changming: -10, daiguo: -15, mabang: -5 } },
-            mabang: { name: '马帮', type: 'gang', limit: '春', baseRelation: 0, phases: ['初识', '合作', '执掌', '丝路霸主'], camp: 'neutral', desc: '大漠商道守护者，行使镖局职能', martial: ['马上功夫', '走镖武艺'], characters: ['马帮大当家', '马一'], chainEffects: { yaobang: 10, luonan: 15, tiehuo: 5, tianhe: 10, caogang: -5 } },
-            yaobang: { name: '药帮', type: 'gang', limit: '夏', baseRelation: 0, phases: ['初识', '合作', '执掌', '医毒双绝'], camp: 'neutral', desc: '天下药草掌控者，与巫地毒术渊源甚深', martial: ['七虫九毒典', '医术'], characters: ['药帮帮主'], chainEffects: { dongwu: 10, court: 5, xiwu: 10, mabang: 5 } },
-            rujian: { name: '如闻商会', type: 'hui', limit: null, baseRelation: 0, phases: ['初识', '合作', '执掌', '情报帝国'], camp: 'neutral', desc: '前朝廷情报机关如见阁，贩卖情报', martial: ['情报收集', '易容术'], characters: ['卖货郎'], chainEffects: { tianhe: 15, court: -10, underground: -20, daiguo: 10, caogang: 15 } },
-            tianhe: { name: '天河商会', type: 'hui', limit: null, baseRelation: 0, phases: ['初识', '合作', '执掌', '富可敌国'], camp: 'neutral', desc: '天下第一富商顾三思建立，欲以商成神', martial: ['商战之术'], characters: ['顾三思', '顾青青'], chainEffects: { caogang: 15, mabang: 10, lishan: 10, rujian: 15 } },
-            luonan: { name: '洛南商会', type: 'hui', limit: '冬', baseRelation: 0, phases: ['初识', '合作', '执掌', '巫商共主'], camp: 'neutral', desc: '联通巫地，采长生草制长生茶', martial: ['巫商之术'], characters: ['洛南大小姐'], chainEffects: { dongwu: 20, xiwu: 20, court: -15, mabang: 10 } },
+            lingjian: { name: '灵剑山庄', type: 'sect', limit: '秋', baseRelation: 0, phases: ['初识', '合作', '执掌', '剑阁'], camp: 'righteous', desc: '承国宗门，快剑无双', martial: ['灵剑快剑'], characters: ['苏清', '剑神婆婆'], grudges: { chunqiu: -20 }, chainEffects: { bingbao: 10, qingxia: -5, lishan: 10 } },
+            wanren: { name: '万仞山庄', type: 'sect', limit: '夏', baseRelation: 0, phases: ['初识', '合作', '执掌', '刑堂'], camp: 'neutral', desc: '许国宗门，铸造神兵', martial: ['万仞百兵', '铸造之术'], characters: ['万仞庄主'], chainEffects: { tiehuo: -5, underground: 5 } },
+            tianxiang: { name: '天香教', type: 'witch', limit: '夏', baseRelation: -30, phases: ['潜伏', '合作', '渗透', '魔主'], camp: 'evil', desc: '巫地魔教，主张纵情享乐', martial: ['忘忧决', '众生相', '神王典'], characters: ['天香教主', '巫红'], chainEffects: { dongwu: 20, xiwu: -15, court: -50, underground: 10 } },
+            daiguo: { name: '代国藏龙阁', type: 'evil', limit: null, baseRelation: -50, phases: ['潜伏', '渗透', '叛乱', '改朝'], camp: 'evil', desc: '代国武学传承', martial: ['诸神令'], characters: ['金叶子', '诸葛败'], chainEffects: { court: -30, bingbao: -10, underground: 10, rujian: 10, lishan: -10 } },
+            caogang: { name: '漕帮', type: 'gang', limit: '夏', baseRelation: 0, phases: ['初识', '合作', '执掌', '一统水道'], camp: 'neutral', desc: '掌控大昊水运', martial: ['水上功夫', '奇门兵器'], characters: ['柳月河', '漕帮帮主'], chainEffects: { rujian: 15, tianhe: 10, changming: -10, daiguo: -15, mabang: -5 } },
+            mabang: { name: '马帮', type: 'gang', limit: '春', baseRelation: 0, phases: ['初识', '合作', '执掌', '丝路霸主'], camp: 'neutral', desc: '大漠商道守护者', martial: ['马上功夫', '走镖武艺'], characters: ['马帮大当家', '马一'], chainEffects: { yaobang: 10, luonan: 15, tiehuo: 5, tianhe: 10, caogang: -5 } },
+            yaobang: { name: '药帮', type: 'gang', limit: '夏', baseRelation: 0, phases: ['初识', '合作', '执掌', '医毒双绝'], camp: 'neutral', desc: '天下药草掌控者', martial: ['七虫九毒典', '医术'], characters: ['药帮帮主'], chainEffects: { dongwu: 10, court: 5, xiwu: 10, mabang: 5 } },
+            rujian: { name: '如闻商会', type: 'hui', limit: null, baseRelation: 0, phases: ['初识', '合作', '执掌', '情报帝国'], camp: 'neutral', desc: '前朝廷情报机关，贩卖情报', martial: ['情报收集', '易容术'], characters: ['卖货郎'], chainEffects: { tianhe: 15, court: -10, underground: -20, daiguo: 10, caogang: 15 } },
+            tianhe: { name: '天河商会', type: 'hui', limit: null, baseRelation: 0, phases: ['初识', '合作', '执掌', '富可敌国'], camp: 'neutral', desc: '天下第一富商建立', martial: ['商战之术'], characters: ['顾三思', '顾青青'], chainEffects: { caogang: 15, mabang: 10, lishan: 10, rujian: 15 } },
+            luonan: { name: '洛南商会', type: 'hui', limit: '冬', baseRelation: 0, phases: ['初识', '合作', '执掌', '巫商共主'], camp: 'neutral', desc: '联通巫地，采长生草', martial: ['巫商之术'], characters: ['洛南大小姐'], chainEffects: { dongwu: 20, xiwu: 20, court: -15, mabang: 10 } },
             lishan: { name: '历山诗会', type: 'hui', limit: '秋', baseRelation: 0, phases: ['初识', '合作', '执掌', '文宗'], camp: 'righteous', desc: '文人集团，掌控文官晋升', martial: ['文气', '唇枪舌剑'], characters: ['琪阁老', '琪金龙'], chainEffects: { court: 15, lingjian: 10, daiguo: -10, tianhe: 10 } },
-            court: { name: '大昊朝廷', type: 'official', limit: '秋', baseRelation: 0, phases: ['初识', '赏识', '重臣', '摄政'], camp: 'royal', desc: '名义上统治天下，实则五分天下，天子无权', martial: ['皇权特许', '禁军武艺'], characters: ['天子', '陆明', '琪阁老'], chainEffects: { xuantian: 10, tianhe: 5, yaobang: 5, lishan: 10, luonan: -15, daiguo: -30, tianxiang: -50 } },
-            underground: { name: '黑道七贼', type: 'evil', limit: null, baseRelation: -20, phases: ['初识', '合作', '执掌', '黑帝'], camp: 'evil', desc: '七位黑道统领结义：盗墓、水贼、盗贼、采花、山贼、马贼、赌贼', martial: ['各类邪门歪道'], characters: ['齐无寿', '赵老六', '张一白', '顾青青'], chainEffects: { rujian: 10, yaobang: 10, tianxiang: 5, court: -40 } },
-            chunqiu: { name: '春风秋风山庄', type: 'sect', limit: null, baseRelation: 0, phases: ['初识', '合作', '执掌', '无敌'], camp: 'righteous', desc: '沈无敌建立，春曰春风，秋曰秋风', martial: ['春秋一气诀', '无二剑法'], characters: ['沈勇', '沈孤云', '诸葛败'], grudges: { lingjian: -20 }, chainEffects: { qingxia: 5, tiehuo: -10, court: -20 } },
+            court: { name: '大昊朝廷', type: 'official', limit: '秋', baseRelation: 0, phases: ['初识', '赏识', '重臣', '摄政'], camp: 'royal', desc: '名义上统治天下，实则五分', martial: ['皇权特许', '禁军武艺'], characters: ['天子', '陆明', '琪阁老'], chainEffects: { xuantian: 10, tianhe: 5, yaobang: 5, lishan: 10, luonan: -15, daiguo: -30, tianxiang: -50 } },
+            underground: { name: '黑道七贼', type: 'evil', limit: null, baseRelation: -20, phases: ['初识', '合作', '执掌', '黑帝'], camp: 'evil', desc: '七位黑道统领结义', martial: ['各类邪门歪道'], characters: ['齐无寿', '赵老六', '张一白', '顾青青'], chainEffects: { rujian: 10, yaobang: 10, tianxiang: 5, court: -40 } },
+            chunqiu: { name: '春风秋风山庄', type: 'sect', limit: null, baseRelation: 0, phases: ['初识', '合作', '执掌', '无敌'], camp: 'righteous', desc: '沈无敌建立', martial: ['春秋一气诀', '无二剑法'], characters: ['沈勇', '沈孤云', '诸葛败'], grudges: { lingjian: -20 }, chainEffects: { qingxia: 5, tiehuo: -10, court: -20 } },
             dongwu: { name: '东巫', type: 'witch', limit: '夏', baseRelation: -10, phases: ['初识', '合作', '执掌', '毒宗'], camp: 'evil', desc: '巫水以东，多信天香教', martial: ['毒蛊之术'], characters: ['东巫皇室'], chainEffects: { tianxiang: 20, xiwu: -10, luonan: 15, yaobang: 10, court: -20 } },
-            xiwu: { name: '西巫', type: 'witch', limit: '冬', baseRelation: -20, phases: ['初识', '合作', '执掌', '血宗'], camp: 'evil', desc: '巫水以西，仍以巫氏皇室为尊', martial: ['血河神功'], characters: ['西巫皇室'], chainEffects: { dongwu: -15, luonan: 15, yaobang: 10, court: -25 } }
+            xiwu: { name: '西巫', type: 'witch', limit: '冬', baseRelation: -20, phases: ['初识', '合作', '执掌', '血宗'], camp: 'evil', desc: '巫水以西，巫氏皇室', martial: ['血河神功'], characters: ['西巫皇室'], chainEffects: { dongwu: -15, luonan: 15, yaobang: 10, court: -25 } }
         };
 
         const SEASONS = {3:'春',4:'春',5:'春',6:'夏',7:'夏',8:'夏',9:'秋',10:'秋',11:'秋',12:'冬',1:'冬',2:'冬'};
@@ -933,7 +611,6 @@
                 const source = this.state.factions[sourceKey];
                 if (!source.chainEffects) return;
                 
-                let chainText = '';
                 const effects = [];
                 
                 for (let [targetKey, value] of Object.entries(source.chainEffects)) {
@@ -1069,8 +746,8 @@
                 document.getElementById('factionPanel').classList.remove('hidden');
                 document.getElementById('routeSelect').classList.remove('hidden');
                 
-                document.getElementById('playerDisplay').textContent = `${this.state.player.surname}${this.state.player.title}`;
-                document.getElementById('mapTitle').textContent = `${this.state.player.surname}${this.state.player.title}，欲往何处？`;
+                document.getElementById('playerDisplay').textContent = TextHelper.honorific(this);
+                document.getElementById('mapTitle').textContent = `${TextHelper.honorific(this)}，欲往何处？`;
                 
                 this.updateUI();
                 this.renderRoutes();
@@ -1137,7 +814,8 @@
                     document.getElementById('emperorSchemeHint').classList.remove('hidden');
                     document.getElementById('emperorSchemeBtn').classList.remove('hidden');
                     
-                    alert(`🐉 天子密诏！\n\n${this.state.player.surname}${this.state.player.title}：\n朕闻卿被江湖所忌，此乃卿之忠朕之明证。今夜子时，独上摘星楼，朕有天下事相托。`);
+                    // 使用TextHelper生成提示
+                    alert(`🐉 天子密诏！\n\n${TextHelper.honorific(this)}：\n朕闻卿被江湖所忌，此乃卿之忠朕之明证。今夜子时，独上摘星楼，朕有天下事相托。`);
                 }
             }
 
@@ -1254,60 +932,89 @@
                 const key = this.state.currentRoute;
                 const f = this.state.factions[key];
                 const phase = Math.min(f.visits - 1, 3);
-                const title = `${this.state.player.surname}${this.state.player.title}`;
+                
+                // 使用辅助方法
+                const you = TextHelper.you();
+                const honorific = TextHelper.honorific(this);
                 
                 let text = `【${f.name} - ${f.phases[phase]}】\n`;
                 text += `【镇派武学】${f.martial.join('、')}\n`;
                 text += `【江湖地位】${f.desc}\n\n`;
                 
-                const stories = this.getPhaseStories(key);
+                const stories = this.getPhaseStories(key, you, honorific);
                 text += stories[phase] || stories[0];
                 
                 if (f.grudges) {
                     for (let [enemy, reason] of Object.entries(f.grudges)) {
                         if (this.state.visitHistory.some(v => v.route === enemy)) {
-                            text += `\n\n[旧怨] ${title}曾与${this.state.factions[enemy].name}往来，${f.name}因${reason}对你心存芥蒂。`;
+                            text += `\n\n[旧怨] 你曾涉足${this.state.factions[enemy].name}，${f.name}因${reason}对你心存芥蒂。`;
                             f.relation -= 5;
                         }
                     }
                 }
                 
                 document.getElementById('storyText').textContent = text;
-                this.generateChoices(key, phase);
+                this.generateChoices(key, phase, honorific);
             }
 
-            getPhaseStories(key) {
-                const title = `${this.state.player.surname}${this.state.player.title}`;
+            getPhaseStories(key, you, honorific) {
                 const stories = {
                     qingxia: [
-                        `清霞山烟云缭绕，${title}拾级而上。山门前，外门弟子马一正在清扫石阶。\n"这位${this.state.player.title}是来拜山的吧？师姐陈盈（金燕仙子）正在洗拙池练功。"\n清霞门以快慢手著称，快时如电光石火，慢时如青山不动。`,
-                        `二师姐陈盈亲迎${title}。她一身素衣，腰悬长剑，目光清澈。\n"${title}别来无恙？上次一别，我清霞门上下可都记着呢。"\n她演示了一路清霞快慢手，快掌如惊雷，慢掌似泰山压顶。`,
-                        `掌门薛常闭关，由薛不凡（清霞剑仙）代掌门户。他负手立于洗拙池边。\n"${title}与我清霞门渊源不浅，今日传你《清霞剑歌》残篇，望你善加利用。"`,
-                        `清霞山上下钟声大作，${title}被奉为座上宾。\n陈盈已接掌门户，她执剑而立："${title}，从今以后，清霞门的剑，也是你的剑。"`
+                        // 叙述用"你"，对话用honorific
+                        `清霞山烟云缭绕，${you}拾级而上。山门前，外门弟子马一正在清扫石阶。\n"这位${honorific}是来拜山的吧？师姐陈盈（金燕仙子）正在洗拙池练功。"\n清霞门以快慢手著称，快时如电光石火，慢时如青山不动。`,
+                        
+                        `二师姐陈盈亲迎。她一身素衣，腰悬长剑，目光清澈。\n"${honorific}别来无恙？上次一别，我清霞门上下可都记着呢。"\n她演示了一路清霞快慢手，快掌如惊雷，慢掌似泰山压顶。`,
+                        
+                        `掌门薛常闭关，由薛不凡（清霞剑仙）代掌门户。他负手立于洗拙池边。\n"${honorific}与我清霞门渊源不浅，今日传你《清霞剑歌》残篇，望你善加利用。"`,
+                        
+                        `清霞山上下钟声大作，${you}被奉为座上宾。\n陈盈已接掌门户，她执剑而立："${honorific}，从今以后，清霞门的剑，也是你的剑。"`
                     ],
                     court: [
-                        `大昊皇宫，天子无权，权臣当道。琪阁老（崇文阁大学士）接待了${title}。\n"${title}可知这天下已五分？许洛望离承，各怀鬼胎。北有代国，南有巫地，大昊...危矣。"\n陆明（龙虎大将军）在殿外守卫，气势如龙。`,
-                        `朝堂之上，天子试图拉拢${title}："只要大将军陆明在，朕就不怕。但你...你能成为第二个陆明吗？"`,
-                        `天子设局，要杀琪阁老。${title}被迫选边站。\n陆明警告你："不要插手，否则我亲手斩你。"这是五大鼎的威压。`,
-                        `${title}成为朝廷重臣，掌握了禁军武艺与权谋之术。`
+                        `大昊皇宫，天子无权，权臣当道。琪阁老（崇文阁大学士）接待了${you}。\n"${honorific}可知这天下已五分？许洛望离承，各怀鬼胎。北有代国，南有巫地，大昊...危矣。"\n陆明（龙虎大将军）在殿外守卫，气势如龙。`,
+                        
+                        `朝堂之上，天子试图拉拢${you}："只要大将军陆明在，朕就不怕。但${honorific}...你能成为第二个陆明吗？"`,
+                        
+                        `天子设局，要杀琪阁老。${you}被迫选边站。\n陆明警告你："不要插手，否则我亲手斩你。"这是五大鼎的威压。`,
+                        
+                        `${you}成为朝廷重臣，掌握了禁军武艺与权谋之术。`
+                    ],
+                    xuantian: [
+                        `玄天宗山门高耸，清气缭绕。清风真人接待了${you}。\n"${honorific}远道而来，有失远迎。师父无歇真人仙逝后，宗门上下都在努力维持..."`,
+                        
+                        `后山禁地，${you}见到正在练功的卢亮。他天资最高，却无心接管宗门。\n"${honorific}，你说这天下第一，当来何用？"他长叹一声，继续演示玄天长生功。`,
+                        
+                        `清风真人召集长老议事。"离国七皇子已拜入宗门，玄天宗再难独善其身。${honorific}，朝廷与江湖，你如何选？"`,
+                        
+                        `玄天宗封山之日，${you}被奉为客卿长老。卢亮留书出走，言道要创观己道。`
+                    ],
+                    tianxiang: [
+                        `巫地深处，天香教总坛。圣女巫红接待了${you}，她媚眼如丝，却又透着危险。\n"${honorific}好胆识，竟敢独闯我天香教。是来找死的，还是来寻欢的？"`,
+                        
+                        `天香教主亲自接见${you}。她戴着面纱，声音飘忽不定。\n"${honorific}身上有股特别的味道...是野心，还是寂寞？"`,
+                        
+                        `教中密室，${you}习得忘忧决。巫红在旁护法，时而轻笑："${honorific}这眉头皱得，让奴家好生心疼。"`,
+                        
+                        `天香教上下奉${you}为副教主，一人之下，万人之上。教主抚琴而笑："从此这江湖，任${honorific}驰骋。"`
                     ]
                 };
                 
+                // 默认模板，使用you和honorific
                 return stories[key] || [
-                    `${title}来到${this.state.factions[key].name}，此处${this.state.factions[key].desc}。`,
-                    `${title}与${this.state.factions[key].name}建立了更深的联系。`,
-                    `${this.state.factions[key].name}对${title}敞开大门，传授高深武学。`,
-                    `${title}掌控了${this.state.factions[key].name}，成为幕后之主。`
+                    `${you}来到${this.state.factions[key].name}，此处${this.state.factions[key].desc}。`,
+                    `${you}与${this.state.factions[key].name}建立了更深的联系。`,
+                    `${this.state.factions[key].name}对${you}敞开大门，传授高深武学。`,
+                    `${you}掌控了${this.state.factions[key].name}，成为幕后之主。`
                 ];
             }
 
-            generateChoices(key, phase) {
+            generateChoices(key, phase, honorific) {
                 const f = this.state.factions[key];
                 const box = document.getElementById('choicesBox');
                 box.innerHTML = '';
                 
                 const choices = [];
                 
+                // 叙述性选择，用"你"
                 choices.push(
                     { text: `以礼相待，结交${f.name}`, effects: {relation: 8, yi: 3}, type: 'normal' },
                     { text: `展示实力，赢得尊重`, effects: {relation: 5, yi: 5, qing: 2}, type: 'normal' },
@@ -1383,7 +1090,7 @@
                     }
                     
                     const btn = document.createElement('button');
-                    btn.style.cssText = 'background: linear-gradient(135deg, #1e1e2e, #2d2d44); border: 1px solid #4a4a6a; color: #fff; padding: 14px 18px; border-radius: 10px; cursor: pointer; margin: 8px 0; text-align: left; width: 100%; font-size: 14px; line-height: 1.5; transition: all 0.3s; touch-action: manipulation; display: flex; justify-content: space-between; align-items: center;';
+                    btn.className = 'choice-btn';
                     if (c.type === 'special') btn.style.border = '1px solid #9b59b6';
                     if (c.type === 'chain') btn.style.border = '1px solid #d4af37';
                     
@@ -1515,9 +1222,13 @@
             }
 
             generateEmperorScene() {
+                const you = TextHelper.you();
+                const honorific = TextHelper.honorific(this);
+                const surname = TextHelper.surname(this);
+                
                 const phases = [
                     {
-                        text: `【摘星楼密谋】\n\n子时三刻，摘星楼上寒风凛冽。天子摒退左右，独留${this.state.player.surname}${this.state.player.title}一人。\n\n"朕知卿之冤。江湖中人，或贪婪，或狂妄，或结党营私，皆非社稷之福。卿被其所忌，正说明卿是朕的忠臣。"\n\n天子展开一幅《天下布武图》："五大鼎已去其一，沈勇老迈，剑神避世，唯有陆明尚可一用。但陆明终究是外人...朕需要一柄只属于朕的剑。"\n\n"卿可愿为朕谋定这天下？"`,
+                        text: `【摘星楼密谋】\n\n子时三刻，摘星楼上寒风凛冽。天子摒退左右，独留${you}一人。\n\n"朕知卿之冤。江湖中人，或贪婪，或狂妄，或结党营私，皆非社稷之福。卿被其所忌，正说明卿是朕的忠臣。"\n\n天子展开一幅《天下布武图》："五大鼎已去其一，沈勇老迈，剑神避世，唯有陆明尚可一用。但陆明终究是外人...朕需要一柄只属于朕的剑。"\n\n"${honorific}可愿为朕谋定这天下？"`,
                         choices: [
                             { text: '俯首称臣：臣愿为陛下赴汤蹈火', effects: {yi: 10, fa: 5, court: 20}, next: 1 },
                             { text: '讨价还价：臣需先平自身之冤', effects: {li: 10, court: 10}, next: 1 },
@@ -1525,7 +1236,7 @@
                         ]
                     },
                     {
-                        text: `【制定方略】\n\n天子与你彻夜长谈，定下三大方略：\n\n一、以江湖制江湖：利用各大势力间的矛盾，挑拨离间。\n二、以商控武：控制三帮四会的经济命脉。\n三、以正诛邪：借讨伐代国、巫地之名，收编宗门。\n\n陆明在旁冷眼旁观："天子好算计。但此举若败，大昊将分崩离析。"`,
+                        text: `【制定方略】\n\n天子与${you}彻夜长谈，定下三大方略：\n\n一、以江湖制江湖：利用各大势力间的矛盾，挑拨离间。\n二、以商控武：控制三帮四会的经济命脉。\n三、以正诛邪：借讨伐代国、巫地之名，收编宗门。\n\n陆明在旁冷眼旁观："天子好算计。但此举若败，大昊将分崩离析。"`,
                         choices: [
                             { text: '稳健策略：先分化三帮四会', effects: {yi: 5, fa: 10}, next: 2 },
                             { text: '激进策略：联合代国，内外夹击', effects: {yi: -10, li: 15}, next: 2 },
@@ -1533,14 +1244,14 @@
                         ]
                     },
                     {
-                        text: `【执行任务】\n\n半年里，你以天子特使身份行走江湖。\n\n• 漕帮与长明岛因运河控制权爆发冲突\n• 历山诗会因科举舞弊案被清查\n• 铁火门内部矛盾爆发，你趁机控制望国兵器供应\n\n代国藏龙阁察觉了你的计划，金叶子派人传话："${this.state.player.surname}${this.state.player.title}，你今日为天子鹰犬，明日必为弃子。"`,
+                        text: `【执行任务】\n\n半年里，${you}以天子特使身份行走江湖。\n\n• 漕帮与长明岛因运河控制权爆发冲突\n• 历山诗会因科举舞弊案被清查\n• 铁火门内部矛盾爆发，${you}趁机控制望国兵器供应\n\n代国藏龙阁察觉了${you}的计划，金叶子派人传话："${honorific}，你今日为天子鹰犬，明日必为弃子。"`,
                         choices: [
                             { text: '严词拒绝：乱臣贼子，休得胡言！', effects: {yi: 15, court: 10}, next: 3, flag: 'loyal' },
                             { text: '虚与委蛇：容我考虑...', effects: {li: 10, fa: -5}, next: 3, flag: 'betray' }
                         ]
                     },
                     {
-                        text: `【终局 · 黄袍加身？】\n\n大昊416年，天下格局已变：\n\n• 八大宗门中，清霞门、玄天宗归顺；长明岛、冰堡中立；铁火门被你控制\n• 三帮四会或效忠或剿灭\n• 代国藏龙阁元气大伤\n\n今夜，陆明率侍卫包围皇宫。天子惊恐："卿，陆明谋反，快护驾！"\n\n陆明却单膝跪地，向你呈上玉玺："${this.state.player.surname}大人，如今天下已定，这皇位...该由你来坐。"`,
+                        text: `【终局 · 黄袍加身？】\n\n大昊416年，天下格局已变：\n\n• 八大宗门中，清霞门、玄天宗归顺；长明岛、冰堡中立；铁火门被${you}控制\n• 三帮四会或效忠或剿灭\n• 代国藏龙阁元气大伤\n\n今夜，陆明率侍卫包围皇宫。天子惊恐："${honorific}，陆明谋反，快护驾！"\n\n陆明却单膝跪地，向${you}呈上玉玺："${surname}大人，如今天下已定，这皇位...该由你来坐。"`,
                         choices: [
                             { text: '🏛️ 辅佐天子（需义70）', ending: 'loyal_minister', req: {yi: 70} },
                             { text: '⚖️ 摄政王（需法60且利60）', ending: 'regent', req: {fa: 60, li: 60} },
@@ -1596,19 +1307,38 @@
                 document.getElementById('factionPanel').classList.add('hidden');
                 document.getElementById('ending').classList.remove('hidden');
                 
+                const you = TextHelper.you();
+                const surname = TextHelper.surname(this);
+                const honorific = TextHelper.honorific(this);
+                
                 const endings = {
-                    loyal_minister: { title: '🏛️ 一代贤臣', text: '你拒绝了陆明，平定误会。天子封你为护国公，世袭罔替。你以忠体国，重振朝纲。二十年后病逝，天子痛哭失声。史书记载：公忠体国，社稷之柱也。' },
-                    regent: { title: '⚖️ 摄政王', text: '你接受玉玺，却未坐龙椅。"朕为天下摄政，待天子成年，还政于朝。"实际上你掌控大昊三十年，削弱世家，建立禁武堂。' },
-                    new_emperor: { title: '👑 开国之君', text: `你受禅让登基，改国号为${this.state.player.surname}。大昊四百年基业在你手中终结又重生。后世称你为${this.state.player.surname}太祖。但你终生未睡安稳，梦中五大鼎的影子徘徊不去。` },
-                    hermit: { title: '🗡️ 天涯孤客', text: '你拒绝了一切，连夜出城。陆明为你打开城门："我从未见过如你这般人物。"此后江湖上多了一位传说，百年后你的故事被列为天下奇谈。' },
-                    normal: { title: '📜 江湖传说', text: '你行走江湖数载，与各方势力周旋。虽未惊天动地，但也留下一段属于自己的传说。' }
+                    loyal_minister: { 
+                        title: '🏛️ 一代贤臣', 
+                        text: `${you}拒绝了陆明，平定误会。天子封${you}为护国公，世袭罔替。${you}以忠体国，重振朝纲。二十年后病逝，天子痛哭失声。史书记载：${surname}公忠体国，社稷之柱也。` 
+                    },
+                    regent: { 
+                        title: '⚖️ 摄政王', 
+                        text: `${you}接受玉玺，却未坐龙椅。"朕为天下摄政，待天子成年，还政于朝。"实际上${you}掌控大昊三十年，削弱世家，建立禁武堂。` 
+                    },
+                    new_emperor: { 
+                        title: '👑 开国之君', 
+                        text: `${you}受禅让登基，改国号为${surname}。大昊四百年基业在${you}手中终结又重生。后世称${you}为${surname}太祖。但${you}终生未睡安稳，梦中五大鼎的影子徘徊不去。` 
+                    },
+                    hermit: { 
+                        title: '🗡️ 天涯孤客', 
+                        text: `${you}拒绝了一切，连夜出城。陆明为${you}打开城门："我从未见过如${honorific}这般人物。"此后江湖上多了一位传说，百年后${you}的故事被列为天下奇谈。` 
+                    },
+                    normal: { 
+                        title: '📜 江湖传说', 
+                        text: `${you}行走江湖数载，与各方势力周旋。虽未惊天动地，但也留下一段属于自己的传说。` 
+                    }
                 };
                 
                 const end = endings[type] || endings.normal;
                 document.getElementById('endTitle').textContent = `第${this.state.cycle}世 · ${end.title}`;
                 document.getElementById('summaryEnding').textContent = end.text;
                 
-                document.getElementById('summaryName').textContent = `${this.state.player.name}（${this.state.player.surname}${this.state.player.title}）`;
+                document.getElementById('summaryName').textContent = TextHelper.fullname(this);
                 
                 const years = this.state.time.y - 413;
                 document.getElementById('summaryOverview').innerHTML = `起于大昊413年，止于${this.state.time.y}年，共历${years}年。<br>踏足${this.state.visitHistory.length}个势力，习得${this.state.martial.length}门武学。`;
@@ -1625,7 +1355,7 @@
                 
                 document.getElementById('summaryMartial').textContent = this.state.martial.join('、') || '未习得特定武学';
                 document.getElementById('summaryStats').innerHTML = `义${Math.floor(this.state.yi)} 利${Math.floor(this.state.li)} 法${Math.floor(this.state.fa)} 情${Math.floor(this.state.qing)}`;
-                document.getElementById('summaryComment').textContent = `${this.state.player.surname}${this.state.player.title}行走江湖，留下一段传说。`;
+                document.getElementById('summaryComment').textContent = `${honorific}行走江湖，留下一段传说。`;
                 
                 this.quickSave();
             }
@@ -1647,7 +1377,6 @@
             }
         }
 
-        // ==================== 初始化 ====================
         const Game = new JianghuGame();
         
         document.getElementById('playerName').addEventListener('input', (e) => {
